@@ -1,15 +1,18 @@
+import fs from "fs";
 import {Car} from "./Car";
 import {Intersection} from "./Intersection";
 import {Street} from "./Street";
 import {TrafficLight} from "./TrafficLight";
 
 export class Simulation {
+  filename: string;
   duration: number;
   streets: Street[];
   intersections: Intersection[];
   cars: Car[];
 
-  constructor(duration: number, streets: Street[], intersections: Intersection[], cars: Car[]) {
+  constructor(filename: string, duration: number, streets: Street[], intersections: Intersection[], cars: Car[]) {
+    this.filename = filename;
     this.duration = duration;
     this.streets = streets;
     this.intersections = intersections;
@@ -52,15 +55,17 @@ export class Simulation {
   }
 
   printResult() {
-    console.log(this.intersections.length);
+    const lines = [];
+    lines.push(this.intersections.length);
     for(const intersection of this.intersections) {
-      console.log(intersection.id);
-      console.log(intersection.lights.length);
+      lines.push(intersection.id);
+      lines.push(intersection.lights.length);
       for(const light of intersection.lights) {
         const street = this.getStreetOfLight(light);
-        console.log(`${street.name} ${light.greenPhase}`)
+        lines.push(`${street.name} ${light.greenPhase}`)
       }
     }
+    fs.writeFileSync(`output/${this.filename}`, lines.join("\n"), "utf-8");
   }
 
   getStreetOfLight(light: TrafficLight): Street {

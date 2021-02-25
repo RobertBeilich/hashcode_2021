@@ -14,7 +14,7 @@ const getMatchingIntersectionOrNew = (intersections: Intersection[], id: number)
 const readInput = () => {
   let i = 0; 
   const filename: string = process.argv[2];
-  const file = fs.readFileSync(filename, "utf-8"); 
+  const file = fs.readFileSync(`input/${filename}`, "utf-8"); 
   const lines = file.split("\n");
 
   const [duration, countIntersection, countStreets, countCars, score] = lines[i].split(" ").map(x => parseInt(x)); 
@@ -41,7 +41,7 @@ const readInput = () => {
     }
     cars.push(new Car(path));
   }
-  return new Simulation(duration, streets, intersections, cars);
+  return new Simulation(filename, duration, streets, intersections, cars);
 }
 
 const simulation = readInput(); 
