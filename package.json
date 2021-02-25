@@ -1,0 +1,16 @@
+{
+  "name": "hashcode_2021_rot",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn build && node dist/app.js",
+    "dev": "nodemon -e ts --exec \"yarn start\""
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.2"
+  }
+}
