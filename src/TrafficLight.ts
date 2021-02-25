@@ -1,15 +1,8 @@
 import {Car} from "./Car";
-import {Street} from "./Street";
 
 export class TrafficLight {
-  queue: Car[];
-  greenPhase: number;
-  street: Street;
-
-  constructor(street: Street) { 
-    this.street = street;
-    this.queue = [];
-  }
+  queue: Car[] = [];
+  greenPhase: number = 1;
 
   queueUpCar(car: Car) {
     this.queue.push(car);

@@ -5,5 +5,6 @@ export class Car {
 
   constructor(path: Street[]) {
     this.path = path;
+    this.path[0].trafficLight.queueUpCar(this);
   }
 }
